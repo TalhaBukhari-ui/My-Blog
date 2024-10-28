@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1em 0;
+        }
+
+        header .container {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 2em 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        article {
+            background: #fff;
+            padding: 1em;
+            margin-bottom: 1em;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        article h2 {
+            margin-top: 0;
+        }
+
+        .date {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .read-more {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My Blog</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="container">
+            {% for post in posts reversed %}
+            <article>
+                <h2>{{post.title}}</h2>
+                <p class="date">{{post.created_at}}</p>
+                <p>{{post.body |truncatewords:20}}</p>
+                <a href="/post/{{post.id}}" class="read-more">Read More</a>
+            </article>
+            {% endfor %}
+
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 My Blog. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
